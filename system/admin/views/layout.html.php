@@ -7,7 +7,7 @@
 <?php if($canonical): ?>
 	<link rel="canonical" href="<?php echo $canonical; ?>" />
 <?php endif; ?>
-	<link href="/htmly/001.css" rel="stylesheet"/>
+	<link href="/htmly/001.css" rel="stylesheet" id="reset-normalize" />
 	<link href="<?php echo site_url() ?>system/resources/css/admin.css" rel="stylesheet"/>
 	<link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
 

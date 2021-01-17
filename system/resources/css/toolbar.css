@@ -22,6 +22,8 @@
 	position: relative;
 	background: #666;
 	color: #CCC;
+	/*z-index needed for non-admin pages/views in twentysixteen theme*/
+	z-index: 100;
 }
 #toolbar:after{
 	display:block;
@@ -31,7 +33,9 @@
 	/*bottom:8px;*/
 	background: linear-gradient(to bottom, rgba(0,0,0,.25) 0%, rgba(255,255,255,1) 100%);
 }
-
+body:not(.admin) #toolbar:after{
+	height:0;
+}
 #toolbar ul {
 	display:flex;
 	flex-wrap:wrap;

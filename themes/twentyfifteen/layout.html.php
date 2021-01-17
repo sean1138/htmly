@@ -1,14 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="en">
 <head>
     <?php echo head_contents();?>
-    <title><?php echo $title;?></title>
-    <meta name="description" content="<?php echo $description; ?>"/>
-    <link rel="canonical" href="<?php echo $canonical; ?>" />
+        <?php echo head_contents() ?>
+        <title><?php echo $title;?></title>
+        <meta name="description" content="<?php echo $description; ?>"/>
+    <?php if($canonical): ?>
+        <link rel="canonical" href="<?php echo $canonical; ?>" />
+    <?php endif; ?>
+        <link href="/htmly/001.css" rel="stylesheet"/>
     <?php if (publisher()): ?>
     <link href="<?php echo publisher() ?>" rel="publisher" /><?php endif; ?>
     <link rel="stylesheet" id="twentyfifteen-fonts-css" href="<?php echo site_url();?>themes/twentyfifteen/css/font.css" type="text/css" media="all">
-    <link rel="stylesheet" id="genericons-css" href="<?php echo site_url();?>themes/twentyfifteen/genericons/genericons.css" type="text/css" media="all"> 
+    <link rel="stylesheet" id="genericons-css" href="<?php echo site_url();?>themes/twentyfifteen/genericons/genericons.css" type="text/css" media="all">
     <link rel="stylesheet" id="twentyfifteen-style-css" href="<?php echo site_url();?>themes/twentyfifteen/css/style.css" type="text/css" media="all">
     <!--[if lt IE 9]>
     <link rel='stylesheet' id='twentyfifteen-ie-css'  href='<?php echo site_url();?>themes/twentyfifteen/css/ie.css' type='text/css' media='all' />
@@ -17,16 +21,18 @@
     <link rel='stylesheet' id='twentyfifteen-ie7-css'  href='<?php echo site_url();?>themes/twentyfifteen/css/ie7.css' type='text/css' media='all' />
     <![endif]-->
 </head>
-<?php     
+<?php
     if (isset($_GET['search'])) {
         $search = _h($_GET['search']);
         $url = site_url() . 'search/' . remove_accent($search);
         header("Location: $url");
     }
 ?>
-<body class="<?php echo $bodyclass;?>">
+<body class="<?php echo $bodyclass; ?>">
 <?php if (facebook()) { echo facebook(); } ?>
-<?php if (login()) { toolbar(); } ?>
+<nav id="toolbar">
+    <?php if (login()) {toolbar();} ?>
+</nav>
     <div id="page" class="hfeed site">
         <div style="top: 0px;" id="sidebar" class="sidebar">
             <header id="masthead" class="site-header" role="banner">
@@ -50,7 +56,7 @@
                     <aside class="widget widget_meta">
                         <h2 class="widget-title"><?php echo i18n("About");?></h2>
                         <p><?php echo blog_description() ?></p>
-                    </aside>                    
+                    </aside>
                     <nav id="social-navigation" class="social-navigation" role="navigation">
                         <div class="menu-social-links-container">
                             <ul id="menu-social-links" class="menu">
@@ -74,7 +80,7 @@
                     </nav>
                     <aside class="widget search">
                         <form><input type="search" name="search" class="form-control" placeholder="Type to search"></form>
-                    </aside>                            
+                    </aside>
                     <aside class="widget widget_meta">
                         <h2 class="widget-title"><?php echo i18n("Recent_posts");?></h2>
                         <?php echo recent_posts() ?>
@@ -111,7 +117,7 @@
                     </aside>
                 </div>
             </div>
-        </div>                
+        </div>
         <div id="content" class="site-content">
             <div id="primary" class="content-area">
                 <main id="main" class="site-main" role="main">
@@ -135,6 +141,7 @@
     <script type="text/javascript" src="<?php echo site_url();?>themes/twentyfifteen/js/jquery-migrate.js"></script>
     <script type="text/javascript" src="<?php echo site_url();?>themes/twentyfifteen/js/functions.js"></script>
     <script type="text/javascript" src="<?php echo site_url();?>themes/twentyfifteen/js/skip-link-focus-fix.js"></script>
+    <script type="text/javascript" src="/htmly/001.js"></script>
     <?php if (analytics()): ?><?php echo analytics() ?><?php endif; ?>
 </body>
 </html>

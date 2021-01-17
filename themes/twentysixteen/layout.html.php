@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="en">
 <head>
     <?php echo head_contents();?>
     <title><?php echo $title;?></title>
     <meta name="description" content="<?php echo $description; ?>"/>
+    <?php if($canonical): ?>
     <link rel="canonical" href="<?php echo $canonical; ?>" />
-    <?php if (publisher()): ?><link href="<?php echo publisher() ?>" rel="publisher" /><?php endif; ?> 
+    <?php endif; ?>
+    <?php if (publisher()): ?><link href="<?php echo publisher() ?>" rel="publisher" /><?php endif; ?>
+    <link href="/htmly/001.css" rel="stylesheet"/>
     <link rel="stylesheet" id="twentysixteen-fonts-css" href="https://fonts.googleapis.com/css?family=Merriweather%3A400%2C700%2C900%2C400italic%2C700italic%2C900italic%7CMontserrat%3A400%2C700%7CInconsolata%3A400&#038;subset=latin%2Clatin-ext" type="text/css" media="all" />
     <link rel="stylesheet" id="genericons-css"  href="<?php echo site_url();?>themes/twentysixteen/genericons/genericons.css" type="text/css" media="all" />
     <link rel="stylesheet" id="twentysixteen-style-css"  href="<?php echo site_url();?>themes/twentysixteen/css/style.css" type="text/css" media="all" />
@@ -19,7 +22,7 @@
     <link rel="stylesheet" id="twentysixteen-ie7-css"  href="<?php echo site_url();?>themes/twentysixteen/css/ie7.css" type="text/css" media="all" />
     <![endif]-->
 </head>
-<?php     
+<?php
     if (isset($_GET['search'])) {
         $search = _h($_GET['search']);
         $url = site_url() . 'search/' . remove_accent($search);
@@ -28,10 +31,12 @@
 ?>
 <body class="<?php echo $bodyclass;?>">
 <?php if (facebook()) { echo facebook(); } ?>
-<?php if (login()) { toolbar(); } ?>
+<nav id="toolbar">
+    <?php if (login()) {toolbar();} ?>
+</nav>
     <div id="page" class="site">
         <div class="site-inner">
-        
+
             <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
 
             <header id="masthead" class="site-header" role="banner">
@@ -50,7 +55,7 @@
                             </div>
                         </nav><!-- .main-navigation -->
                     </div><!-- .site-header-menu -->
-                    
+
                 </div><!-- .site-header-main -->
             </header><!-- .site-header -->
 
@@ -69,7 +74,7 @@
                         <div class="textwidget"><p><?php echo blog_description();?></p>
                         </div>
                     </section>
-                    
+
                     <section id="search" class="widget widget_search">
                         <form role="search" class="search-form">
                         <label>
@@ -78,15 +83,15 @@
                         </label>
                         <button type="submit" class="search-submit"><span class="screen-reader-text">Search</span></button>
                         </form>
-                    </section>    
-                    
-                    <section id="recent-posts" class="widget widget_recent_entries">        
+                    </section>
+
+                    <section id="recent-posts" class="widget widget_recent_entries">
                         <h2 class="widget-title"><?php echo i18n("Recent_posts");?></h2>
                         <?php echo recent_posts();?>
                     </section>
-                    
+
                     <?php if (config('views.counter') === 'true') :?>
-                    <section id="popular-posts" class="widget widget_popular_entries">        
+                    <section id="popular-posts" class="widget widget_popular_entries">
                         <h2 class="widget-title">Popular Posts</h2>
                         <?php echo popular_posts();?>
                     </section>
@@ -100,15 +105,15 @@
                     <?php endif;?>
 
                     <section id="archives" class="widget widget_archive">
-                    <h2 class="widget-title"><?php echo i18n("Archives");?></h2>        
+                    <h2 class="widget-title"><?php echo i18n("Archives");?></h2>
                         <?php echo archive_list() ?>
                     </section>
-                    
+
                     <section id="category" class="widget widget_category">
-                    <h2 class="widget-title"><?php echo i18n("Categories");?></h2>        
+                    <h2 class="widget-title"><?php echo i18n("Categories");?></h2>
                         <?php echo category_list() ?>
                     </section>
-                    
+
                     <section id="popular-tags" class="widget widget_popular_tags">
                     <h2 class="widget-title"><?php echo i18n("Popular_tags");?></h2>
                         <?php $i = 1; $tags = tag_cloud(true); arsort($tags); ?>
@@ -119,7 +124,7 @@
                         <?php endforeach;?>
                         </ul>
                     </section>
-                    
+
                 </aside><!-- .sidebar .widget-area -->
 
             </div><!-- .site-content -->
@@ -137,7 +142,7 @@
                         <li><a href="<?php echo config('social.facebook');?>"><span class="screen-reader-text">Facebook</span></a></li>
                         <li><a href="<?php echo config('social.github');?>"><span class="screen-reader-text">GitHub</span></a></li>
                     </ul>
-                    </div>                
+                    </div>
                 </nav>
                 <div class="site-info">
                     <span class="site-title"><a href="<?php echo site_url();?>" rel="home"><?php echo blog_title();?></a></span>
@@ -159,6 +164,7 @@
     /* ]]> */
     </script>
     <script type="text/javascript" src="<?php echo site_url();?>themes/twentysixteen/js/functions.js"></script>
+    <script type="text/javascript" src="/htmly/001.js"></script>
     <?php if (analytics()): ?><?php echo analytics() ?><?php endif; ?>
 </body>
 </html>
