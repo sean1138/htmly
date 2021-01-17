@@ -13,7 +13,7 @@
 	Utilities
 --------------------------*/
 .hide {
-	display: none;
+	display: none !important;
 }
 /*-------------------------
 	Heading
@@ -80,6 +80,7 @@ header nav{
 }
 header nav ul{
 	margin:0;
+	padding:0;
 	align-self: center;
 	list-style-type: none;
 }
