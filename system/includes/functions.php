@@ -1858,7 +1858,7 @@ function disqus($title = null, $url = null)
     $disqus = config('disqus.shortname');
     $script = <<<EOF
     <script type="text/javascript">
-        var getAbsolutePath = function(href) {
+    var getAbsolutePath = function(href) {
             var link = document.createElement('a');
             link.href = href;
             return link.href;
@@ -3249,9 +3249,9 @@ function format_date($date)
     $date_format = config('date.format');
 
     if (!isset($date_format) || empty($date_format)) {
-        return strftime('%e %B %Y', $date);
+        return date('d F Y', $date);
     } else {
-        return strftime($date_format, $date);
+        return date($date_format, $date);
     }
 
 }
