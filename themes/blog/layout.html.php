@@ -1,30 +1,33 @@
-<!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<!doctype html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-    <?php echo head_contents();?>
+    <?php echo head_contents() ?>
     <title><?php echo $title;?></title>
     <meta name="description" content="<?php echo $description; ?>"/>
+    <?php if($canonical): ?>
     <link rel="canonical" href="<?php echo $canonical; ?>" />
+    <?php endif; ?>
     <?php if (publisher()): ?>
-    <link href="<?php echo publisher() ?>" rel="publisher" /><?php endif; ?>    
+    <link href="<?php echo publisher() ?>" rel="publisher" /><?php endif; ?>
+    <link href="/htmly/001.css" rel="stylesheet" id="reset-normalize" />
     <link href="//fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic" rel="stylesheet" type="text/css">
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="//fonts.googleapis.com/css?family=Crimson+Text:400,400italic" rel="stylesheet" type="text/css">     
+    <link href="//fonts.googleapis.com/css?family=Crimson+Text:400,400italic" rel="stylesheet" type="text/css">
     <!-- Global CSS -->
-    <link rel="stylesheet" href="<?php echo site_url();?>themes/blog/css/bootstrap.min.css">   
+    <link rel="stylesheet" href="<?php echo site_url();?>themes/blog/css/bootstrap.min.css">
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="<?php echo site_url();?>themes/blog/css/font-awesome.min.css">
-    <!-- Theme CSS -->  
+    <!-- Theme CSS -->
     <link id="theme-style" rel="stylesheet" href="<?php echo site_url();?>themes/blog/css/styles.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-</head> 
-<?php     
+</head>
+<?php
     if (isset($_GET['search'])) {
         $search = _h($_GET['search']);
         $url = site_url() . 'search/' . remove_accent($search);
@@ -37,10 +40,12 @@
     <meta content="<?php echo blog_description() ?>" itemprop="description"/>
 </div>
 <?php if (facebook()) { echo facebook(); } ?>
-<?php if (login()) { toolbar(); } ?>
-    <!-- ******HEADER****** --> 
+<nav id="toolbar">
+    <?php if (login()) {toolbar();} ?>
+</nav>
+    <!-- ******HEADER****** -->
     <header class="header">
-        <div class="container">                       
+        <div class="container">
             <div class="logo pull-left"><img class="logo-image" src="<?php echo site_url();?>themes/blog/images/logo.png"/></div>
             <div class="branding pull-left">
                 <?php if (is_index()) {?>
@@ -48,15 +53,15 @@
                 <?php } else {?>
                     <h2 class="name"><a href="<?php echo site_url();?>"><?php echo blog_title();?></a></h2>
                 <?php } ?>
-                <p class="desc"><?php echo blog_tagline();?></p>   
+                <p class="desc"><?php echo blog_tagline();?></p>
                 <ul class="social list-inline">
-                    <li><a href="<?php echo config('social.twitter');?>"><i class="fa fa-twitter"></i></a></li>                   
+                    <li><a href="<?php echo config('social.twitter');?>"><i class="fa fa-twitter"></i></a></li>
                     <li><a href="<?php echo config('social.facebook');?>"><i class="fa fa-facebook"></i></a></li>
                     <li><a href="<?php echo config('social.tumblr');?>"><i class="fa fa-tumblr"></i></a></li>
-                    <li><a href="<?php echo site_url();?>feed/rss"><i class="fa fa-rss"></i></a></li>                                    
-                </ul> 
+                    <li><a href="<?php echo site_url();?>feed/rss"><i class="fa fa-rss"></i></a></li>
+                </ul>
             </div><!--//branding-->
-            <nav id="main-nav" class="main-nav navbar-right" role="navigation" > 
+            <nav id="main-nav" class="main-nav navbar-right" role="navigation" >
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
@@ -94,9 +99,9 @@
                     <div class="section-inner">
                         <h2 class="heading">About</h2>
                         <div class="content">
-                         <?php echo blog_description();?>                                  
-                        </div><!--//content-->  
-                    </div><!--//section-inner-->                 
+                         <?php echo blog_description();?>
+                        </div><!--//content-->
+                    </div><!--//section-inner-->
                 </aside><!--//section-->
                 <aside class="recent-posts aside section">
                     <div class="section-inner">
@@ -185,18 +190,19 @@
                         </div><!--//content-->
                     </div><!--//section-inner-->
                 </aside><!--//section-->
-            </div><!--//secondary-->    
+            </div><!--//secondary-->
         </div><!--//row-->
     </div><!--//masonry-->
-    <!-- ******FOOTER****** --> 
+    <!-- ******FOOTER****** -->
     <footer class="footer">
         <div class="container text-center">
             <?php echo copyright();?>
         </div><!--//container-->
     </footer><!--//footer-->
-    <!-- Javascript -->          
+    <!-- Javascript -->
     <script type="text/javascript" src="<?php echo site_url();?>themes/blog/js/jquery-latest.min.js"></script>
     <script type="text/javascript" src="<?php echo site_url();?>themes/blog/js/bootstrap.min.js"></script>
-<?php if (analytics()): ?><?php echo analytics() ?><?php endif; ?>    
+    <script type="text/javascript" src="/htmly/001.js"></script>
+<?php if (analytics()): ?><?php echo analytics() ?><?php endif; ?>
 </body>
-</html> 
+</html>

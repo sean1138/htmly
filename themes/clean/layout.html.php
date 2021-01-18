@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html class="no-js" lang="en">
 <head>
     <?php echo head_contents() ?>
     <title><?php echo $title;?></title>
     <meta name="description" content="<?php echo $description; ?>"/>
-    <link rel="canonical" href="<?php echo $canonical; ?>" />
+    <?php if($canonical): ?>
+        <link rel="canonical" href="<?php echo $canonical; ?>" />
+    <?php endif; ?>
+    <link href="/htmly/001.css" rel="stylesheet" id="reset-normalize" />
     <link href="<?php echo site_url() ?>themes/clean/css/style.css" rel="stylesheet"/>
     <link href="//fonts.googleapis.com/css?family=Open+Sans+Condensed:700&subset=latin,cyrillic-ext" rel="stylesheet"/>
     <?php if (publisher()): ?>
@@ -20,7 +23,9 @@
     <meta content="<?php echo blog_description() ?>" itemprop="description"/>
 </div>
 <?php if (facebook()) { echo facebook(); } ?>
-<?php if (login()) { toolbar(); } ?>
+<nav id="toolbar">
+    <?php if (login()) {toolbar();} ?>
+</nav>
 <aside>
     <?php if (is_index()) { ?>
         <h1 class="blog-title"><a rel="home" href="<?php echo site_url() ?>"><?php echo blog_title() ?></a></h1>
@@ -43,13 +48,14 @@
             <li><a href="<?php echo site_url();?>tag/<?php echo $tag;?>"><?php echo tag_i18n($tag);?> (<?php echo $count;?>)</a></li>
             <?php if ($i++ >= 5) break;?>
             <?php endforeach;?>
-        </ul>			
+        </ul>
     </div>
     <div class="copyright"><?php echo copyright() ?></div>
 </aside>
 <section id="content">
     <?php echo content() ?>
 </section>
+<script type="text/javascript" src="/htmly/001.js"></script>
 <?php if (analytics()): ?><?php echo analytics() ?><?php endif; ?>
 </body>
 </html>

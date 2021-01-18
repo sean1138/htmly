@@ -4,7 +4,10 @@
     <?php echo head_contents() ?>
     <title><?php echo $title;?></title>
     <meta name="description" content="<?php echo $description; ?>"/>
+    <?php if($canonical): ?>
     <link rel="canonical" href="<?php echo $canonical; ?>" />
+    <?php endif; ?>
+    <link href="/htmly/001.css" rel="stylesheet" id="reset-normalize" />
     <link href="<?php echo site_url() ?>themes/default/css/style.css" rel="stylesheet"/>
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
     <?php if (publisher()): ?>
@@ -20,7 +23,9 @@
     <meta content="<?php echo blog_description() ?>" itemprop="description"/>
 </div>
 <?php if (facebook()) { echo facebook(); } ?>
-<?php if (login()) { toolbar(); } ?>
+<nav id="toolbar">
+    <?php if (login()) {toolbar();} ?>
+</nav>
 <div id="outer-wrapper">
     <div id="menu-wrapper">
         <div class="container">
@@ -77,11 +82,12 @@
                         <div class="inner"><h3>Follow</h3><?php echo social() ?></div>
                     </div>
                 </div>
-                <div class="copyright"><?php echo copyright() ?></div>
+                <?php echo copyright() ?>
             </footer>
         </div>
     </div>
 </div>
+<script type="text/javascript" src="/htmly/001.js"></script>
 <?php if (analytics()): ?><?php echo analytics() ?><?php endif; ?>
 </body>
 </html>

@@ -4,7 +4,10 @@
     <?php echo head_contents() ?>
     <title><?php echo $title;?></title>
     <meta name="description" content="<?php echo $description; ?>"/>
+    <?php if($canonical): ?>
     <link rel="canonical" href="<?php echo $canonical; ?>" />
+    <?php endif; ?>
+    <link href="/htmly/001.css" rel="stylesheet" id="reset-normalize" />
     <link href="<?php echo site_url() ?>themes/logs/css/style.css" rel="stylesheet"/>
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
     <?php if (publisher()): ?>
@@ -19,7 +22,9 @@
     <meta content="<?php echo blog_description() ?>" itemprop="description"/>
 </div>
 <?php if (facebook()) { echo facebook(); } ?>
-<?php if (login()) { toolbar(); } ?>
+<nav id="toolbar">
+    <?php if (login()) {toolbar();} ?>
+</nav>
 <div id="cover">
     <div id="header-wrapper">
         <header id="header" class="responsive">
@@ -69,7 +74,7 @@
                 </div>
                 <?php if (disqus()): ?>
                     <div class="comments">
-                        <h3>Comments</h3>                    
+                        <h3>Comments</h3>
                         <?php echo recent_comments() ?>
                         <style>li.dsq-widget-item {border-bottom: 1px solid #ebebeb;margin:0;margin-bottom:10px;padding:0;padding-bottom:10px;}a.dsq-widget-user {font-weight:normal;}img.dsq-widget-avatar {margin-right:10px; }.dsq-widget-comment {display:block;padding-top:5px;}.dsq-widget-comment p {display:block;margin:0;}p.dsq-widget-meta {padding-top:5px;margin:0;}#dsq-combo-widget.grey #dsq-combo-content .dsq-combo-box {background: transparent;}#dsq-combo-widget.grey #dsq-combo-tabs li {background: none repeat scroll 0 0 #DDDDDD;}</style>
                     </div>
@@ -97,6 +102,7 @@
         </footer>
     </div>
 </div>
+<script type="text/javascript" src="/htmly/001.js"></script>
 <?php if (analytics()): ?><?php echo analytics() ?><?php endif; ?>
 </body>
 </html>
