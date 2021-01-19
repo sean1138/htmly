@@ -68,10 +68,10 @@
     </div>
     <div class="postnav">
         <?php if (!empty($next)): ?>
-            <span><a href="<?php echo($next['url']); ?>" class="pagination-arrow newer" rel="next"><?php echo($next['title']); ?></a></span>
+            <span class="newer"><a href="<?php echo($next['url']); ?>" class="pagination-arrow" rel="next"><?php echo($next['title']); ?></a></span>
         <?php endif; ?>
         <?php if (!empty($prev)): ?>
-            <span><a href="<?php echo($prev['url']); ?>" class="pagination-arrow older" rel="prev"><?php echo($prev['title']); ?></a></span>
+            <span class="older"><a href="<?php echo($prev['url']); ?>" class="pagination-arrow" rel="prev"><?php echo($prev['title']); ?></a></span>
         <?php endif; ?>
     </div>
     <?php if (disqus()): ?>

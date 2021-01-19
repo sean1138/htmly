@@ -5,7 +5,7 @@
     <?php if (!empty($category)): ?>
         <div class="category">
             <h2 class="category-title"><?php echo $category->title;?></h2>
-            <div class="category-content">                                   
+            <div class="category-content">
                 <?php echo $category->body; ?>
             </div>
         </div>
@@ -32,7 +32,7 @@
                 <span itemprop="datePublished"><?php echo format_date($p->date) ?></span> - Posted in
                 <span itemprop="articleSection"><?php echo $p->category ?></span> by
                 <span itemprop="author"><a href="<?php echo $p->authorUrl ?>"><?php echo $p->author ?></a></span>
-                <?php if (disqus_count()) { ?> - 
+                <?php if (disqus_count()) { ?> -
                     <span><a href="<?php echo $p->url ?>#disqus_thread">Comments</a></span>
                 <?php } elseif (facebook()) { ?> -
                     <a href="<?php echo $p->url ?>#comments"><span><fb:comments-count href=<?php echo $p->url ?>></fb:comments-count> Comments</span></a>
@@ -69,10 +69,10 @@
 <?php if (!empty($pagination['prev']) || !empty($pagination['next'])): ?>
     <div class="pager">
         <?php if (!empty($pagination['prev'])): ?>
-            <span><a href="?page=<?php echo $page - 1 ?>" class="pagination-arrow newer" rel="prev">Newer</a></span>
+            <span class="newer"><a href="?page=<?php echo $page - 1 ?>" class="pagination-arrow" rel="prev">Newer</a></span>
         <?php endif; ?>
         <?php if (!empty($pagination['next'])): ?>
-            <span><a href="?page=<?php echo $page + 1 ?>" class="pagination-arrow older" rel="next">Older</a></span>
+            <span class="older"><a href="?page=<?php echo $page + 1 ?>" class="pagination-arrow" rel="next">Older</a></span>
         <?php endif; ?>
     </div>
 <?php endif; ?>
